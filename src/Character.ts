@@ -7,8 +7,8 @@ const HEALING_POINTS = 100;
 export class Character {
   level = 1;
   position = 0;
-
   readonly attackMaxRange: number;
+  readonly factions: Set<string> = new Set();
 
   constructor(
     startingPosition: number,
