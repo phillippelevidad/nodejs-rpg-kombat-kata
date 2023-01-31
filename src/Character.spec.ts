@@ -101,4 +101,16 @@ describe("Character", () => {
     expect(() => character.factions.delete("Faction 1")).not.toThrow();
     expect(character.factions.size).toBe(1);
   });
+
+  it("Becomes allies with characters of the same faction", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    expect(character.isAlliedWith(other)).toBe(false);
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(character.isAlliedWith(other)).toBe(true);
+  });
 });

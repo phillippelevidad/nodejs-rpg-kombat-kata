@@ -43,6 +43,11 @@ export class Character {
     this.health += HEALING_POINTS;
   }
 
+  isAlliedWith(other: Character): boolean {
+    const myFactions = Array.from(this.factions.keys());
+    return myFactions.some((f) => other.factions.has(f));
+  }
+
   private getDamage(target: Character): number {
     if (target.level - this.level >= 5)
       return Math.floor(BASE_ATTACK_POINTS * 0.5);
