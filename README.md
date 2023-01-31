@@ -12,10 +12,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration One
 
-[See the code for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/tree/feature/iteration-one)
-
-- [Character.ts](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-one/src/Character.ts)
-- [Character.spec.ts (tests)](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-one/src/Character.spec.ts)
+[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/1/files)
 
 1. All Characters, when created, have:
 
@@ -34,10 +31,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Two
 
-[See the code for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/tree/feature/iteration-two)
-
-- [Character.ts](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-two/src/Character.ts)
-- [Character.spec.ts (tests)](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-two/src/Character.spec.ts)
+[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/2/files)
 
 1. A Character cannot Deal Damage to itself.
 
@@ -49,10 +43,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Three
 
-[See the code for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/tree/feature/iteration-three)
-
-- [Character.ts](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-three/src/Character.ts)
-- [Character.spec.ts (tests)](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-three/src/Character.spec.ts)
+[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/3/files)
 
 1. Characters have an attack Max Range.
 
@@ -64,10 +55,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Four
 
-[See the code for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/tree/feature/iteration-four)
-
-- [Character.ts](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-four/src/Character.ts)
-- [Character.spec.ts (tests)](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/blob/feature/iteration-four/src/Character.spec.ts)
+[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/4/files)
 
 1. Characters may belong to one or more Factions.
 
