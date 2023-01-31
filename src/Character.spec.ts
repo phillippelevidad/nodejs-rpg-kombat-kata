@@ -85,4 +85,20 @@ describe("Character", () => {
     character.attack(target);
     expect(target.health).toBe(850);
   });
+
+  it("Starts with no factions", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    expect(character.factions.size).toBe(0);
+  });
+
+  it("Can join or leave one or more factions", () => {
+    const character = new Character(PLAYER_1_POSITION);
+
+    expect(() => character.factions.add("Faction 1")).not.toThrow();
+    expect(() => character.factions.add("Faction 2")).not.toThrow();
+    expect(character.factions.size).toBe(2);
+
+    expect(() => character.factions.delete("Faction 1")).not.toThrow();
+    expect(character.factions.size).toBe(1);
+  });
 });
