@@ -56,12 +56,12 @@ describe("Character", () => {
     const character = new Character(PLAYER_1_POSITION);
     const target = new Character(PLAYER_2_POSITION_CLOSE);
     while (target.health > 0) character.attack(target);
-    expect(() => target.heal()).toThrow();
+    expect(() => target.healSelf()).toThrow();
   });
 
   it("Healing cannot raise health above 1000", () => {
     const character = new Character(PLAYER_1_POSITION);
-    character.heal();
+    character.healSelf();
     expect(character.health).toBe(1000);
   });
 
@@ -122,5 +122,17 @@ describe("Character", () => {
     other.factions.add("F1");
 
     expect(() => character.attack(other)).toThrow();
+  });
+
+  it("Can heal allies", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    expect(() => character.healAlly(other)).toThrow();
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(() => character.healAlly(other)).not.toThrow();
   });
 });

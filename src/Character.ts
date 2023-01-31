@@ -32,14 +32,17 @@ export class Character {
   }
 
   attack(other: Character): void {
-    this.ensureIsEligibleTarget(other);
-    const damage = this.getDamage(other);
+    this.ensureIsEligibleAttackTarget(other);
+    const damage = this.getDamagePoints(other);
     other.takeDamage(damage);
   }
 
-  heal(): void {
-    if (!this.isAlive) throw new Error("A dead character cannot heal.");
-    this.health += HEALING_POINTS;
+  healAlly(ally: Character): void {
+    this.heal(ally);
+  }
+
+  healSelf(): void {
+    this.heal(this);
   }
 
   isWithinAttackRange(other: Character): boolean {
@@ -52,7 +55,7 @@ export class Character {
     return myFactions.some((f) => other.factions.has(f));
   }
 
-  private getDamage(target: Character): number {
+  private getDamagePoints(target: Character): number {
     if (target.level - this.level >= 5)
       return Math.floor(BASE_ATTACK_POINTS * 0.5);
     if (target.level - this.level <= 5)
@@ -60,14 +63,29 @@ export class Character {
     return BASE_ATTACK_POINTS;
   }
 
+  private heal(other: Character): void {
+    this.ensureIsEligibleHealingTarget(other);
+    other.receiveHealing(HEALING_POINTS);
+  }
+
   private takeDamage(damage: number): void {
     this.health -= damage;
   }
 
-  private ensureIsEligibleTarget(other: Character): void | never {
+  private receiveHealing(healing: number): void {
+    this.health += healing;
+  }
+
+  private ensureIsEligibleAttackTarget(other: Character): void | never {
     if (other === this) throw new Error("Cannot attack self.");
     if (!this.isWithinAttackRange(other))
       throw new Error("Target is out of range.");
     if (this.isAlliedWith(other)) throw new Error("Cannot attack an ally.");
+  }
+
+  private ensureIsEligibleHealingTarget(other: Character): void | never {
+    if (other !== this && !this.isAlliedWith(other))
+      throw "Can only heal self or allies.";
+    if (!other.isAlive) throw new Error("Cannot heal a dead character.");
   }
 }
