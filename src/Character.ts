@@ -32,8 +32,7 @@ export class Character {
   }
 
   attack(other: Character): void {
-    if (other === this) throw new Error("Cannot attack self.");
-    this.ensureWithRange(other);
+    this.ensureIsEligibleTarget(other);
     const damage = this.getDamage(other);
     other.takeDamage(damage);
   }
@@ -41,6 +40,11 @@ export class Character {
   heal(): void {
     if (!this.isAlive) throw new Error("A dead character cannot heal.");
     this.health += HEALING_POINTS;
+  }
+
+  isWithinAttackRange(other: Character): boolean {
+    const distance = Math.abs(this.position - other.position);
+    return distance <= this.attackMaxRange;
   }
 
   isAlliedWith(other: Character): boolean {
@@ -60,11 +64,10 @@ export class Character {
     this.health -= damage;
   }
 
-  private ensureWithRange(other: Character): void | never {
-    const distance = Math.abs(this.position - other.position);
-    if (distance > this.attackMaxRange)
-      throw new Error(
-        `Target is out of range. Max range is ${this.attackMaxRange}.`
-      );
+  private ensureIsEligibleTarget(other: Character): void | never {
+    if (other === this) throw new Error("Cannot attack self.");
+    if (!this.isWithinAttackRange(other))
+      throw new Error("Target is out of range.");
+    if (this.isAlliedWith(other)) throw new Error("Cannot attack an ally.");
   }
 }

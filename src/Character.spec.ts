@@ -113,4 +113,14 @@ describe("Character", () => {
 
     expect(character.isAlliedWith(other)).toBe(true);
   });
+
+  it("Cannot deal damage to characters of the same faction", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(() => character.attack(other)).toThrow();
+  });
 });
