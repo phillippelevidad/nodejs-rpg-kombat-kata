@@ -56,12 +56,12 @@ describe("Character", () => {
     const character = new Character(PLAYER_1_POSITION);
     const target = new Character(PLAYER_2_POSITION_CLOSE);
     while (target.health > 0) character.attack(target);
-    expect(() => target.heal()).toThrow();
+    expect(() => target.healSelf()).toThrow();
   });
 
   it("Healing cannot raise health above 1000", () => {
     const character = new Character(PLAYER_1_POSITION);
-    character.heal();
+    character.healSelf();
     expect(character.health).toBe(1000);
   });
 
@@ -84,5 +84,55 @@ describe("Character", () => {
     character.level = 6;
     character.attack(target);
     expect(target.health).toBe(850);
+  });
+
+  it("Starts with no factions", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    expect(character.factions.size).toBe(0);
+  });
+
+  it("Can join or leave one or more factions", () => {
+    const character = new Character(PLAYER_1_POSITION);
+
+    expect(() => character.factions.add("Faction 1")).not.toThrow();
+    expect(() => character.factions.add("Faction 2")).not.toThrow();
+    expect(character.factions.size).toBe(2);
+
+    expect(() => character.factions.delete("Faction 1")).not.toThrow();
+    expect(character.factions.size).toBe(1);
+  });
+
+  it("Becomes allies with characters of the same faction", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    expect(character.isAlliedWith(other)).toBe(false);
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(character.isAlliedWith(other)).toBe(true);
+  });
+
+  it("Cannot deal damage to characters of the same faction", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(() => character.attack(other)).toThrow();
+  });
+
+  it("Can heal allies", () => {
+    const character = new Character(PLAYER_1_POSITION);
+    const other = new Character(PLAYER_2_POSITION_CLOSE);
+
+    expect(() => character.healAlly(other)).toThrow();
+
+    character.factions.add("F1");
+    other.factions.add("F1");
+
+    expect(() => character.healAlly(other)).not.toThrow();
   });
 });
