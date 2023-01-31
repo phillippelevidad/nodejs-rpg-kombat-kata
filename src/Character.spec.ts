@@ -47,4 +47,20 @@ describe("Character", () => {
     const character = new Character();
     expect(() => character.attack(character)).toThrow();
   });
+
+  it("If the target is 5 or more Levels above the attacker, Damage is reduced by 50%", () => {
+    const character = new Character();
+    const target = new Character();
+    target.level = 6;
+    character.attack(target);
+    expect(target.health).toBe(950);
+  });
+
+  it("If the target is 5 or more Levels below the attacker, Damage is increased by 50%", () => {
+    const character = new Character();
+    const target = new Character();
+    character.level = 6;
+    character.attack(target);
+    expect(target.health).toBe(850);
+  });
 });
