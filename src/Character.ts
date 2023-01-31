@@ -1,13 +1,8 @@
-import { CharacterType } from "./CharacterType";
+import { CharacterType, getAttackMaxRange } from "./CharacterType";
 
 const MAX_HEALTH = 1000;
 const BASE_ATTACK_POINTS = 100;
 const HEALING_POINTS = 100;
-
-const RANGE_BY_TYPE = new Map<CharacterType, number>([
-  [CharacterType.Melee, 2],
-  [CharacterType.Ranged, 20],
-]);
 
 export class Character {
   level = 1;
@@ -20,7 +15,7 @@ export class Character {
     type: CharacterType = CharacterType.Melee
   ) {
     this.position = startingPosition;
-    this.attackMaxRange = RANGE_BY_TYPE.get(type)!;
+    this.attackMaxRange = getAttackMaxRange(type);
   }
 
   private _health = MAX_HEALTH;
