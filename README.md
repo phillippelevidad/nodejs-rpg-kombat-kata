@@ -6,13 +6,15 @@ Source: [https://github.com/ardalis/kata-catalog](https://github.com/ardalis/kat
 
 These are my solutions to the challenges below.
 
-The repository has one branch for each iteration. The main branch is just the starting project, without any relevant code.
+🌿 The repository has one branch for each iteration.
+
+⚠️ The main branch is just the starting project, without any relevant code.
 
 This is a fun kata that has the programmer building simple combat rules, as for a role-playing game (RPG). It is implemented as a sequence of iterations. The domain doesn't include a map or any other character skills apart from their ability to damage and heal one another.
 
 ## Iteration One
 
-[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/1/files)
+✅ [See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/1/files)
 
 1. All Characters, when created, have:
 
@@ -31,7 +33,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Two
 
-[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/2/files)
+✅ [See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/2/files)
 
 1. A Character cannot Deal Damage to itself.
 
@@ -43,7 +45,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Three
 
-[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/3/files)
+✅ [See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/3/files)
 
 1. Characters have an attack Max Range.
 
@@ -55,7 +57,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Four
 
-[See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/4/files)
+✅ [See the changes for this iteration](https://github.com/phillippelevidad/nodejs-rpg-kombat-kata/pull/4/files)
 
 1. Characters may belong to one or more Factions.
 
@@ -71,7 +73,7 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ## Iteration Five
 
-The code for this iteration is pending.
+🕑 _The code for this iteration is pending._
 
 1. Characters can damage non-character _things_ (props).
    - Anything that has Health may be a target
