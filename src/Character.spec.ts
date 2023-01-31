@@ -49,4 +49,9 @@ describe("Character", () => {
     character.heal(other);
     expect(other.health).toBe(1000);
   });
+
+  it("Cannot deal damage to itself", () => {
+    const character = new Character();
+    expect(() => character.attack(character)).toThrow();
+  });
 });

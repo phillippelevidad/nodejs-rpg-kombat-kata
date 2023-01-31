@@ -16,6 +16,7 @@ export class Character {
   }
 
   attack(other: Character): void {
+    if (other === this) throw new Error("Cannot attack self.");
     other.takeDamage(100);
   }
 
