@@ -1,9 +1,22 @@
+import { CharacterType, getAttackMaxRange } from "./CharacterType";
+
 const MAX_HEALTH = 1000;
 const BASE_ATTACK_POINTS = 100;
 const HEALING_POINTS = 100;
 
 export class Character {
   level = 1;
+  position = 0;
+
+  readonly attackMaxRange: number;
+
+  constructor(
+    startingPosition: number,
+    type: CharacterType = CharacterType.Melee
+  ) {
+    this.position = startingPosition;
+    this.attackMaxRange = getAttackMaxRange(type);
+  }
 
   private _health = MAX_HEALTH;
 
@@ -20,7 +33,8 @@ export class Character {
 
   attack(other: Character): void {
     if (other === this) throw new Error("Cannot attack self.");
-    const damage = this.getDamage(this, other);
+    this.ensureWithRange(other);
+    const damage = this.getDamage(other);
     other.takeDamage(damage);
   }
 
@@ -29,15 +43,23 @@ export class Character {
     this.health += HEALING_POINTS;
   }
 
-  private getDamage(attacker: Character, target: Character): number {
-    if (target.level - attacker.level >= 5)
+  private getDamage(target: Character): number {
+    if (target.level - this.level >= 5)
       return Math.floor(BASE_ATTACK_POINTS * 0.5);
-    if (target.level - attacker.level <= 5)
+    if (target.level - this.level <= 5)
       return Math.floor(BASE_ATTACK_POINTS * 1.5);
     return BASE_ATTACK_POINTS;
   }
 
   private takeDamage(damage: number): void {
     this.health -= damage;
+  }
+
+  private ensureWithRange(other: Character): void | never {
+    const distance = Math.abs(this.position - other.position);
+    if (distance > this.attackMaxRange)
+      throw new Error(
+        `Target is out of range. Max range is ${this.attackMaxRange}.`
+      );
   }
 }
