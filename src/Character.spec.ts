@@ -25,29 +25,22 @@ describe("Character", () => {
 
   it("Dies when health reaches 0", () => {
     const character = new Character();
-    const other = new Character();
-    while (other.health > 0) character.attack(other);
-    expect(other.isAlive).toBe(false);
-  });
-
-  it("Can heal other characters", () => {
-    const character = new Character();
-    const other = new Character();
-    expect(() => character.heal(other)).not.toThrow();
+    const target = new Character();
+    while (target.health > 0) character.attack(target);
+    expect(target.isAlive).toBe(false);
   });
 
   it("Dead characters cannot be healed", () => {
     const character = new Character();
-    const other = new Character();
-    while (other.health > 0) character.attack(other);
-    expect(() => character.heal(other)).toThrow();
+    const target = new Character();
+    while (target.health > 0) character.attack(target);
+    expect(() => target.heal()).toThrow();
   });
 
   it("Healing cannot raise health above 1000", () => {
     const character = new Character();
-    const other = new Character();
-    character.heal(other);
-    expect(other.health).toBe(1000);
+    character.heal();
+    expect(character.health).toBe(1000);
   });
 
   it("Cannot deal damage to itself", () => {

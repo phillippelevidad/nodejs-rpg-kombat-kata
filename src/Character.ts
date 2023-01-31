@@ -1,4 +1,6 @@
 const MAX_HEALTH = 1000;
+const ATTACK_POINTS = 100;
+const HEALING_POINTS = 100;
 
 export class Character {
   private _health = MAX_HEALTH;
@@ -17,19 +19,15 @@ export class Character {
 
   attack(other: Character): void {
     if (other === this) throw new Error("Cannot attack self.");
-    other.takeDamage(100);
+    other.takeDamage(ATTACK_POINTS);
   }
 
-  heal(other: Character): void {
-    if (!other.isAlive) throw new Error("Cannot heal dead character.");
-    other.receiveHealing(100);
+  heal(): void {
+    if (!this.isAlive) throw new Error("A dead character cannot heal.");
+    this.health += HEALING_POINTS;
   }
 
   takeDamage(damage: number): void {
     this.health -= damage;
-  }
-
-  receiveHealing(healing: number): void {
-    this.health += healing;
   }
 }
