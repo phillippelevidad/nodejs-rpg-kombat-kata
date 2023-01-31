@@ -16,4 +16,17 @@ describe("Character", () => {
     const character = new Character();
     expect(character.isAlive).toBe(true);
   });
+
+  it("Can attack other characters", () => {
+    const character = new Character();
+    const other = new Character();
+    expect(() => character.attack(other)).not.toThrow();
+  });
+
+  it("Dies when health reaches 0", () => {
+    const character = new Character();
+    const other = new Character();
+    while (other.health > 0) character.attack(other);
+    expect(other.isAlive).toBe(false);
+  });
 });
